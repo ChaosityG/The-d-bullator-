@@ -3,10 +3,13 @@ from random import randint
 from time import sleep, time
 from math import sqrt
 
-width_scr = 1780
-height_scr = 720
+inp_width = input ("What is the width of your screen? (in pixels)")
+inp_height = input ("What is the height of your screen? (in pixels)")
+
+width_scr = int(inp_width)
+height_scr = int(inp_height)
 scr = Tk()
-scr.title = "The 'débullator'"
+scr.title = "The débullator"
 c = Canvas(scr, height = height_scr, width = width_scr, bg = 'darkblue')
 c.pack()
 
