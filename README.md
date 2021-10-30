@@ -1,2 +1,2 @@
 # The debullator
-a little game than i made for everyone
+A little game that I made for everyone.
