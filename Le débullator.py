@@ -3,13 +3,18 @@ from random import randint
 from time import sleep, time
 from math import sqrt
 
-inp_width = input ("What is the width of your screen? (in pixels)")
-inp_height = input ("What is the height of your screen? (in pixels)")
+print('''There is the rules:
+You have 30 seconds in the timer, if the timer gets to 0 its Game Over.
+You have 30 more seconds every 1250 points.
 
-width_scr = int(inp_width)
-height_scr = int(inp_height)
+Thats it ! Enjoy your play ! ''', '\n')
+sleep(15)
+
 scr = Tk()
-scr.title = "The débullator"
+width_scr = scr.winfo_screenwidth()
+height_scr = scr.winfo_screenheight()
+scr.title("The débullator")
+scr.iconbitmap("icon.ico")
 c = Canvas(scr, height = height_scr, width = width_scr, bg = 'darkblue')
 c.pack()
 
@@ -34,7 +39,20 @@ def move_submarine(event):
         c.move(id_submarine_out, -speed_submarine, 0)
     elif event.keysym == 'Right':
         c.move(id_submarine_in, speed_submarine, 0)
-        c.move(id_submarine_out, speed_submarine, 0)               
+        c.move(id_submarine_out, speed_submarine, 0)
+    elif event.keysym == 'w':
+        c.move(id_submarine_in, 0, -speed_submarine)
+        c.move(id_submarine_out, 0, -speed_submarine)
+    elif event.keysym == 's':
+        c.move(id_submarine_in, 0, speed_submarine)
+        c.move(id_submarine_out, 0, speed_submarine)
+    elif event.keysym == 'a':
+        c.move(id_submarine_in, -speed_submarine, 0)
+        c.move(id_submarine_out, -speed_submarine, 0)
+    elif event.keysym == 'd':
+        c.move(id_submarine_in, speed_submarine, 0)
+        c.move(id_submarine_out, speed_submarine, 0)      
+        
 c.bind_all('<Key>', move_submarine)
 
 id_bubble = list()
@@ -90,7 +108,7 @@ def collision():
     return points
 
 c.create_text(100, 30, text='Time remaining', fill='white')
-c.create_text(200, 30, text='SCORE')
+c.create_text(200, 30, text='SCORE', fill='white')
 text_time = c.create_text(100, 50, fill='white')
 text_score = c.create_text(200, 50, fill='white')
 def show_score(score):
@@ -98,35 +116,34 @@ def show_score(score):
 def show_time(time_remain):
     c.itemconfig(text_time, text=str(time_remain))
 
-LUCK_BUBBLE = 2
-TIME_LIMIT = 45
-SCORE_BONUS = 1000
+LUCK_BUBBLE = 3
+TIME_LIMIT = 30
+SCORE_BONUS = 1250
 score = 0
 bonus = 0
 endgame = time() + TIME_LIMIT 
 
-# MAIN GAME LOOP
+# MAIN GAME LOOP 
 while time() < endgame:
-    if randint(1, LUCK_BUBBLE) == 1:
-        create_bubble()
-    move_bubble()
-    erase_bubble()
-    score += collision()
-    if (int(score/SCORE_BONUS)) > bonus:
-        bonus += 1
-        endgame += TIME_LIMIT
-    show_score(score)
-    show_time(int(endgame - time()))
-    print('Debug: score=' + str(score))
-    scr.update()
-    sleep(0.01)
+     if randint(1, LUCK_BUBBLE) == 1:
+         create_bubble()
+     move_bubble()
+     erase_bubble()
+     score += collision()
+     if (int(score/SCORE_BONUS)) > bonus:
+         bonus += 1
+         endgame += TIME_LIMIT
+     show_score(score)
+     show_time(int(endgame - time()))
+     scr.update()
 
-c.create_text(X_MID, Y_MID, \
-    text='GAME OVER', fill='white', font=('Helvetica', 30))
-c.create_text(X_MID, Y_MID + 30, \
-    text='Score : ' + str(score), fill='white')
-c.create_text(X_MID, Y_MID + 45, \
-    text='Bonus time : ' + str(bonus*TIME_LIMIT), fill='white')
 
-    
-# Every bubble costs 32 points
+c.create_text(X_MID, Y_MID - 100, text='GAME OVER', fill='white', font=('Helvetica', 30))
+c.create_text(X_MID, Y_MID - 70, text='Score : ' + str(score), fill='white')
+c.create_text(X_MID, Y_MID - 50, text='Bonus time : ' + str(bonus*TIME_LIMIT), fill='white') 
+
+btn_re = Button(scr, text = "Retry", font = ("Helvetica", 10), bg = "white")
+btn_re.place(x = X_MID, y = Y_MID - 30)
+btn_cls = Button(scr, text = "Close", command = scr.destroy, font = ('Helvetica', 10), bg='white')
+btn_cls.place(x = X_MID, y = Y_MID - 10)
+# Every bubble costs from 32 to 36 points.
