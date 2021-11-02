@@ -1,5 +1,5 @@
-# The debullator
-A little game that I made for everyone.
+# Le débullator
+Un petit jeu que j'ai fait pour tout le monde.
 
-Note: This game is only compatible with keyboard and is not compatible with gamepads, controllers, etc.
-Note: For this game to work, you need to have a Python compiler, you can install it from Python.org.
+Remarque : Ce jeu est uniquement compatible avec le clavier et n'est pas compatible avec les manettes de jeu, les contrôleurs, etc.
+Remarque : Pour que ce jeu fonctionne, vous devez disposer d'un compilateur Python, vous pouvez l'installer depuis Python.org.
