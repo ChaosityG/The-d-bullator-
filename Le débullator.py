@@ -42,8 +42,8 @@ c.pack()
 
 id_submarine_in = c.create_polygon(5, 5, 5, 25, 30, 15, fill='red')
 id_submarine_out = c.create_oval(0, 0, 30, 30, outline='red')
-id_submarine_avant = c.create_polygon(5, 5, 5, 5, 30, 15, outline='red')
-id_submarine_avant2 = c.create_polygon(5, 5, 5, 5, 30, -7, outline='red')
+id_submarine_avant = c.create_polygon(5, 5, 5, 5, 30, 14, outline='red')
+id_submarine_avant2 = c.create_polygon(5, 5, 5, 5, 30, -6, outline='red')
 r_submarine = 15
 X_MID = width_scr / 2
 Y_MID = height_scr / 2
@@ -166,14 +166,14 @@ LUCK_BUBBLE = 3
 BUBBLE_LIMIT = 250
 
 if mode == "1":
-    LUCK_BUBBLE = 1
-    BUBBLE_LIMIT = 350
+    LUCK_BUBBLE = 2
+    BUBBLE_LIMIT = 300
 elif mode == "2":
-    LUCK_BUBBLE = 3
-    BUBBLE_LIMIT = 250
-elif mode == "3":
     LUCK_BUBBLE = 4
-    BUBBLE_LIMIT = 200
+    BUBBLE_LIMIT = 225
+elif mode == "3":
+    LUCK_BUBBLE = 6
+    BUBBLE_LIMIT = 125
 
 
 TIME_LIMIT = 30
